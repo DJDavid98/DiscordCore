@@ -97,9 +97,15 @@
   <ItemGroup>
     <EmbeddedResource Include="UI\SettingsViewController.bsml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DiscordGameSDK.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(BeatSaberDir)\Plugins"
-copy "$(AssemblyName).pdb" "$(BeatSaberDir)\Plugins"</PostBuildEvent>
+copy "$(AssemblyName).pdb" "$(BeatSaberDir)\Plugins"
+copy "DiscordGameSDK.manifest" "$(BeatSaberDir)\Plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
+  "id": "DiscordGameSDK",
+  "name": "DiscordGameSDK",
+  "author": "Discord",
+  "version": "2.5.7",
+  "description": "A SDK for interfacing with Discord.",
+  "gameVersion": "1.16.4",
+  "files": [
+    "Libs/Native/discord_game_sdk.dll"
+  ]
+}
