@@ -14,8 +14,5 @@ namespace DiscordCore
             Plugin.log = log;
             DiscordManager manager = DiscordManager.instance;
         }
-
-        [OnEnable, OnDisable]
-        public void OnState() { /* On State */ }
     }
 }
