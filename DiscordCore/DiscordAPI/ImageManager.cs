@@ -1,11 +1,12 @@
 using System;
+using System.Runtime.InteropServices;
 #if UNITY_EDITOR || UNITY_STANDALONE
 using UnityEngine;
 #endif
 
 namespace Discord
 {
-    public partial struct ImageHandle
+	public partial struct ImageHandle
     {
         static public ImageHandle User(Int64 id)
         {
@@ -42,7 +43,7 @@ namespace Discord
         public Texture2D GetTexture(ImageHandle handle)
         {
             var dimensions = GetDimensions(handle);
-            var texture = new Texture2D((int)dimensions.Width, (int)dimensions.Height, TextureFormat.RGBA32, false, false);
+            var texture = new Texture2D((int)dimensions.Width, (int)dimensions.Height, TextureFormat.RGBA32, false, true);
             texture.LoadRawTextureData(GetData(handle));
             texture.Apply();
             return texture;
