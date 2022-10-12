@@ -3,7 +3,7 @@
   "id": "DiscordGameSDK",
   "name": "DiscordGameSDK",
   "author": "Discord",
-  "version": "2.5.7",
+  "version": "3.2.1",
   "description": "A SDK for interfacing with Discord.",
   "gameVersion": "1.16.4",
   "files": [
