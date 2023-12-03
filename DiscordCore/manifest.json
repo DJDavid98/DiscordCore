@@ -7,9 +7,9 @@
     "name": "DiscordCore",
     "version": "3.0.3",
     "dependsOn": {
-      "BSIPA": "^4.2.2",
+      "BSIPA": "^4.3.0",
       "DiscordGameSDK": "^3.2.1",
-      "BeatSaberMarkupLanguage": "^1.6.10"
+      "BeatSaberMarkupLanguage": "^1.8.0"
     },
     "links": {
       "project-source": "https://github.com/andruzzzhka/DiscordCore"
