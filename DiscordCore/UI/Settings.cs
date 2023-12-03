@@ -1,16 +1,20 @@
 ﻿using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.Components;
 using BeatSaberMarkupLanguage.Parser;
+using BeatSaberMarkupLanguage.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace DiscordCore.UI
 {
-    public class Settings : PersistentSingleton<Settings>
+    public class Settings : MonoBehaviour
     {
+        public static Settings instance = new Settings();
+
         [UIValue("enable-plugin")]
         public bool enablePlugin { get { return Config.Instance.EnableDiscordCore; } set { Config.Instance.EnableDiscordCore = value; } }
         [UIValue("allow-join")]

@@ -1,6 +1,8 @@
 ﻿using BeatSaberMarkupLanguage.Settings;
+using BeatSaberMarkupLanguage.Util;
 using Discord;
 using DiscordCore.UI;
+using IPA;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,13 @@ using UnityEngine;
 
 namespace DiscordCore
 {
-    public class DiscordManager : PersistentSingleton<DiscordManager>
+    public class DiscordManager : MonoBehaviour
     {
         public static bool active = true;
 
         internal List<DiscordInstance> _activeInstances = new List<DiscordInstance>();
         private float lastUpdateTime;
+        public static DiscordManager instance = new DiscordManager();
 
         public static string deactivationReason;
         private static string lastCheckDeactivationReason;
@@ -73,19 +76,20 @@ namespace DiscordCore
                 Settings.instance.UpdateModsList();
             }
         }
+
         public void Update()
         {
             if (!active && deactivationReason == DiscordClient.DisabledReason) return;
 
-            if (!active && UnityEngine.Time.time - lastCheckTime >= 10f)
+            if (!active && Time.time - lastCheckTime >= 10f)
             {
-                lastCheckTime = UnityEngine.Time.time;
+                lastCheckTime = Time.time;
                 try
                 {
                     DiscordClient.Enable();
                     Plugin.log.Debug($"Discord reactivated.");
-                    DiscordManager.active = true;
-                    DiscordManager.deactivationReason = string.Empty;
+                    active = true;
+                    deactivationReason = string.Empty;
                     lastCheckDeactivationReason = string.Empty;
                 }
                 catch (ResultException e)
@@ -95,8 +99,8 @@ namespace DiscordCore
                 catch (Exception e)
                 {
                     Plugin.log.Debug(e);
-                    DiscordManager.active = false;
-                    DiscordManager.SetDeactivationReasonFromException(e);
+                    active = false;
+                    SetDeactivationReasonFromException(e);
                     lastCheckDeactivationReason = deactivationReason;
                 }
             }
@@ -116,9 +120,8 @@ namespace DiscordCore
             }
         }
 
-        public override void OnEnable()
+        public void OnEnable()
         {
-            base.OnEnable();
             active = true;
             try
             {
@@ -133,8 +136,8 @@ namespace DiscordCore
             catch (Exception e)
             {
                 Plugin.log.Debug(e);
-                DiscordManager.active = false;
-                DiscordManager.SetDeactivationReasonFromException(e);
+                active = false;
+                SetDeactivationReasonFromException(e);
                 lastCheckDeactivationReason = deactivationReason;
             }
         }
@@ -178,8 +181,8 @@ namespace DiscordCore
         private void ProcessResultException(ResultException e, string messagePrefix)
         {
 
-            DiscordManager.active = false;
-            DiscordManager.SetDeactivationReasonFromException(e);
+            active = false;
+            SetDeactivationReasonFromException(e);
             if (lastCheckDeactivationReason == deactivationReason) return; // Already messaged this.
             lastCheckDeactivationReason = deactivationReason;
             if (e.Result != Result.NotRunning && e.Result != Result.InternalError)
