@@ -18,19 +18,27 @@ namespace DiscordCore
 
         internal List<DiscordInstance> _activeInstances = new List<DiscordInstance>();
         private float lastUpdateTime;
-        public static DiscordManager instance = new DiscordManager();
+        public static DiscordManager instance = null;
 
         public static string deactivationReason;
         private static string lastCheckDeactivationReason;
         private static float lastCheckTime;
 
-        protected void Awake()
+        public void Awake()
         {
             Plugin.log.Debug($"{nameof(DiscordManager)} Awake");
             DiscordClient.OnActivityInvite += DiscordClient_OnActivityInvite;
             DiscordClient.OnActivityJoin += DiscordClient_OnActivityJoin;
             DiscordClient.OnActivityJoinRequest += DiscordClient_OnActivityJoinRequest;
             DiscordClient.OnActivitySpectate += DiscordClient_OnActivitySpectate;
+
+            if (instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         public static void SetDeactivationReasonFromException(Exception e)
@@ -62,6 +70,7 @@ namespace DiscordCore
             Config.Instance.Save();
 
             _activeInstances.Add(instance);
+            Plugin.log.Debug($"Added new instance with AppId {instance.settings.appId}");
 
             Settings.instance.UpdateModsList();
 
@@ -168,13 +177,24 @@ namespace DiscordCore
 
             if (activityFound)
             {
+                
                 DiscordClient.ChangeAppID(appId);
-                DiscordClient.GetActivityManager().UpdateActivity(topPriorityActivity, (results) => { });
+                DiscordClient.GetActivityManager().UpdateActivity(topPriorityActivity, (result) => {
+                    if (result != Result.Ok)
+                    {
+                        Plugin.log.Debug($"Found activity (ApplicationId={topPriorityActivity.ApplicationId}, Type={topPriorityActivity.Type}), update result: {result}");
+                    }
+                });
             }
             else
             {
                 DiscordClient.ChangeAppID(-1);
-                DiscordClient.GetActivityManager().ClearActivity((result) => { });
+                DiscordClient.GetActivityManager().ClearActivity((result) => {
+                    if (result != Result.Ok)
+                    {
+                        Plugin.log.Debug($"Count not find activity to update, activity clear result: {result}");
+                    }
+                });
             }
         }
 

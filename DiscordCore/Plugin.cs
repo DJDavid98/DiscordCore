@@ -1,4 +1,5 @@
 ﻿using IPA;
+using UnityEngine;
 
 namespace DiscordCore
 {
@@ -7,25 +8,28 @@ namespace DiscordCore
     {
         internal const string Name = "DiscordCore";
         internal static IPA.Logging.Logger log;
-        internal DiscordManager manager;
+
+        protected GameObject manager;
 
         [Init]
         public void Init(IPA.Logging.Logger log)
         {
             Plugin.log = log;
-            manager = DiscordManager.instance;
+
+            manager = new GameObject("DiscordManager");
+            manager.AddComponent<DiscordManager>();
         }
 
         [OnEnable]
         public void OnEnable()
         {
-            manager.OnEnable();
+            manager.SetActive(true);
         }
 
         [OnDisable]
         public void OnDisable()
         {
-            manager.OnDisable();
+            manager.SetActive(false);
         }
     }
 }
