@@ -9,7 +9,7 @@
     "dependsOn": {
       "BSIPA": "^4.3.0",
       "DiscordGameSDK": "^3.2.1",
-      "BeatSaberMarkupLanguage": "^1.8.0"
+      "BeatSaberMarkupLanguage": "^1.7.6"
     },
     "links": {
       "project-source": "https://github.com/andruzzzhka/DiscordCore"
