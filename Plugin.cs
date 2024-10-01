@@ -18,6 +18,8 @@ namespace DiscordCore
 
             manager = new GameObject("DiscordManager");
             manager.AddComponent<DiscordManager>();
+
+            SettingsMenuManager.Initialize();
         }
 
         [OnEnable]

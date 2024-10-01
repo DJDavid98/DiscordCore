@@ -54,7 +54,7 @@ namespace DiscordCore.UI
                             modObjectsList.Add(listObject);
                         }
 
-                        modsList.tableView.ReloadData();
+                        modsList.TableView.ReloadData();
                     }
                     else
                     {
