@@ -1,4 +1,4 @@
-﻿<settings-container>
+﻿<settings-container xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://monkeymanboy.github.io/BSML-Docs/BSMLSchema.xsd'>
 
   <checkbox text='Enable DiscordCore' value='enable-plugin' apply-on-change='true' />
   <checkbox text='Allow join requests' value='allow-join' apply-on-change='true' />
@@ -16,10 +16,10 @@
           <text id='mod-name' align='MidlineLeft' font-size='5' />
         </horizontal>
 
-        <horizontal child-expand-width='true' vertical-fit='Unconstrained' horizontal-fit='PreferredSize' spacing='1'>
-          <page-button dir='Up' on-click='increase-priority' pref-width='8'/>
-          <page-button dir='Down' on-click='decrease-priority' pref-width='8'/>
+        <horizontal background='round-rect-panel' vertical-fit='Unconstrained' horizontal-fit='PreferredSize' spacing='1'>
           <checkbox text='' value='enable-mod' apply-on-change='true' on-change='active-state-changed' pref-width='6'/>
+          <page-button dir='Up' on-click='increase-priority' pref-width='5'/>
+          <page-button dir='Down' on-click='decrease-priority' pref-width='5'/>
         </horizontal>
       </horizontal>
 

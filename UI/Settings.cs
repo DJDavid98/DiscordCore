@@ -156,6 +156,7 @@ namespace DiscordCore.UI
             public void Refresh(bool selected, bool highlighted)
             {
                 modName.text = modInstance.settings.modName;
+                modIcon.gameObject.SetActive(modInstance.settings.modIcon != null);
                 modIcon.sprite = modInstance.settings.modIcon;
             }
 
