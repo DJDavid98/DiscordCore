@@ -54,7 +54,7 @@ namespace DiscordCore.UI
                             modObjectsList.Add(listObject);
                         }
 
-                        modsList.tableView.ReloadData();
+                        modsList.TableView.ReloadData();
                     }
                     else
                     {
@@ -156,6 +156,7 @@ namespace DiscordCore.UI
             public void Refresh(bool selected, bool highlighted)
             {
                 modName.text = modInstance.settings.modName;
+                modIcon.gameObject.SetActive(modInstance.settings.modIcon != null);
                 modIcon.sprite = modInstance.settings.modIcon;
             }
 

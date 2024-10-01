@@ -127,6 +127,7 @@
     <Compile Include="DiscordManager.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\SettingsMenuManager.cs" />
     <Compile Include="UI\Settings.cs" />
   </ItemGroup>
   <ItemGroup>

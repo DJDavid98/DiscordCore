@@ -135,8 +135,6 @@ namespace DiscordCore
             try
             {
                 DiscordClient.Enable();
-                BSMLSettings.instance.RemoveSettingsMenu(Settings.instance);
-                BSMLSettings.instance.AddSettingsMenu("Discord Core", "DiscordCore.UI.SettingsViewController.bsml", Settings.instance);
             }
             catch (ResultException e)
             {
