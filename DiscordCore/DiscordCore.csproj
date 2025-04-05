@@ -77,12 +77,6 @@
     <EmbeddedResource Include="manifest.json" />
     <EmbeddedResource Include="UI\SettingsViewController.bsml" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="DiscordCore.csproj.user" />
-    <Content Include="DiscordGameSDK.manifest">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="DiscordCore.csproj.user" Condition="Exists('DiscordCore.csproj.user')" />
@@ -94,12 +88,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
-<!--  -->
-<!--  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
-<!--  <PropertyGroup>-->
-<!--    <PostBuildEvent>copy "$(TargetPath)" "$(BeatSaberDir)\Plugins"-->
-<!--copy "$(AssemblyName).pdb" "$(BeatSaberDir)\Plugins"-->
-<!--copy "DiscordGameSDK.manifest" "$(BeatSaberDir)\Plugins"</PostBuildEvent>-->
-<!--  </PropertyGroup>-->
 </Project>

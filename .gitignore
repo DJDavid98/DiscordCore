@@ -341,3 +341,6 @@ ASALocalRun/
 healthchecksdb
 
 DiscordGameSDK/
+
+Refs/**/*.dll
+Refs/**/*.pdb
